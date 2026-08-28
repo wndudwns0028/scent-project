@@ -8,7 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from api import naver, products, scent
+from api import products, scent
+
+# from api import naver  # 네이버 쇼핑 검색 API 종료로 미사용 (아래 include_router 주석 참고)
 from database.mongodb import check_mongodb, ensure_cache_ttl_index
 
 load_dotenv()
@@ -28,7 +30,9 @@ app.add_middleware(
 
 app.include_router(scent.router, tags=["Fragrances"])
 app.include_router(products.router, tags=["Products"])
-app.include_router(naver.router, prefix="/naver", tags=["Naver"])
+# 네이버 쇼핑 검색 API(shop.json)가 2026-07-31부로 종료되어 /naver/search는 항상 502를 반환한다.
+# 라우터 파일(api/naver.py)은 참고용으로 남겨두고 앱에는 연결하지 않는다.
+# app.include_router(naver.router, prefix="/naver", tags=["Naver"])
 
 
 @app.on_event("startup")

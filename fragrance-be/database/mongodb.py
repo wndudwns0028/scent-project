@@ -10,7 +10,8 @@ load_dotenv()
 
 DATABASE_NAME = "scent_db"
 FRAGRANCE_COLLECTION = "fragrances"
-NAVER_CACHE_COLLECTION = "naver_cache"
+NAVER_CACHE_COLLECTION = "naver_cache"  # 네이버 쇼핑 검색 API 종료(2026-07-31)로 현재 미사용 — curated_product_service 참고
+CURATED_PRODUCTS_COLLECTION = "curated_products"
 MONGODB_TIMEOUT_MS = 1000
 HEALTH_CHECK_TIMEOUT_SECONDS = 1.5
 
@@ -38,6 +39,10 @@ def get_scent_collection():
 
 def get_naver_cache_collection():
     return get_client()[DATABASE_NAME][NAVER_CACHE_COLLECTION]
+
+
+def get_curated_products_collection():
+    return get_client()[DATABASE_NAME][CURATED_PRODUCTS_COLLECTION]
 
 
 def ensure_cache_ttl_index() -> None:

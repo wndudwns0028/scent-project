@@ -1,3 +1,10 @@
+"""
+[미사용/보류] 네이버 쇼핑 검색 API(shop.json)가 2026-07-31부로 종료되어
+이 모듈은 더 이상 api/products.py에서 호출되지 않는다.
+현재는 services/curated_product_service.py(수동 큐레이션 데이터 기반)가 그 자리를 대체한다.
+향후 대체 API를 붙이게 될 경우를 대비해 구조 참고용으로 남겨둔다.
+"""
+
 import html as html_module
 import logging
 import math
